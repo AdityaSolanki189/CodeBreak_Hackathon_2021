@@ -1,8 +1,12 @@
 from flask import Flask, request, Response
 from werkzeug.utils import secure_filename
+import sqlite3
+import os
 
 from db import db_init, db
 from models import Img
+
+currentdir = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask(__name__)
 # SQLAlchemy config. Read more: https://flask-sqlalchemy.palletsprojects.com/en/2.x/
@@ -31,13 +35,13 @@ def upload():
     db.session.add(img)
     db.session.commit()
 
-    return 'Img Uploaded!', 200
+    return 'Img has been Uploaded!', 200
 
 
-@app.route('/<int:id>')
+""" @app.route('/<int:id>')
 def get_img(id):
     img = Img.query.filter_by(id=id).first()
     if not img:
         return 'Img Not Found!', 404
 
-    return Response(img.img, mimetype=img.mimetype)
+    return Response(img.img, mimetype=img.mimetype) """
