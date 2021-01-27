@@ -38,10 +38,11 @@ def upload():
     return 'Img has been Uploaded!', 200
 
 
-""" @app.route('/<int:id>')
+@app.route('/<int:id>')
 def get_img(id):
     img = Img.query.filter_by(id=id).first()
     if not img:
         return 'Img Not Found!', 404
 
-    return Response(img.img, mimetype=img.mimetype) """
+    return Response(img.img, mimetype=img.mimetype)
+    
