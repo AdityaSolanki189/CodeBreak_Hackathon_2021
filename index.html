@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family:  'Merriweather','Source Sans Pro','Helvetica Neue', sans-serif;
+        }
+        #heading{
+            color: white;
+            text-align: center;
+        }
+        label input[type="file"]{
+            display: none;
+            /* align-content: center; */
+        }
+        
+        label{
+            /* display: block; */
+            display: inline-block;
+            text-align: center;
+            line-height: 150%;
+            font-size: 19px;
+            background-color: white;
+            /* border-top-left-radius: 1rem; */
+            border-radius: 1.5rem;
+            /* border-bottom-left-radius: 1rem; */
+            /* border-bottom-right-radius: 1rem; */
+            padding: 0.4rem 1.5rem;
+            margin: 30px 44%;
+            font-family:'Merriweather', Arial, Helvetica, sans-serif;
+            
+            
+        }
+        
+        img{
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        
+        .row{
+            display: flex;
+            justify-content: center;
+            
+        }  
+        body{
+            
+            height: 1024px; 
+            
+            background: linear-gradient(180deg, #5a182f 23.44%, #2E1E65 100%),  #382c2c;
+        }
+        
+        .image-preview{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div>
+        <h1 id = "heading">Intelligent Traffic Control</h1>
+        
+    </div>
+    
+    <div class="row">
+        <div class="col">
+            
+            <img src="unnamed.jpg" height="150" width="250" id="changeimage1">
+            <img src="unnamed.jpg" height="150" width="250"  id="changeimage2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <img src="unnamed.jpg" height="150" width="250"  id="changeimage3">
+            <img src="unnamed.jpg" height="150" width="250"  id="changeimage4">
+        </div>
+    </div>
+    
+    <label for="uploadedhere" >Upload Image
+        <input type="file" id="uploadedhere" onchange="myfun()">
+    </label>
+    
+    
+    
+    <script>
+        var i = 0;
+        
+        function myfun(){
+            i++;
+            
+            var x = 	document.getElementById("uploadedhere").files[0];
+            var currentimage1  = document.getElementById("changeimage1");
+            var currentimage2  = document.getElementById("changeimage2");
+            var currentimage3  = document.getElementById("changeimage3");
+            var currentimage4  = document.getElementById("changeimage4");
+            
+            
+            
+            var reader =   new FileReader();
+            
+            reader.onload = function(){
+                
+                if(i == "1"){
+                    currentimage1.src = reader.result;
+                }
+                
+                if(i == "2"){
+                    currentimage2.src = reader.result;
+                }
+                if(i == "3"){
+                    currentimage3.src = reader.result;
+                }
+                if(i == "4"){
+                    currentimage4.src = reader.result;
+                }
+            }
+            
+            
+            
+            
+            reader.readAsDataURL(x);
+        }
+        
+    </script>
+    
+</body>
+</html>
