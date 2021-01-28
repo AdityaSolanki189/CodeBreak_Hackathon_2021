@@ -51,6 +51,10 @@ def model_predict(file_path):
     print(preds)
     return preds
 
+def save_to_file(count):
+    sys.stdout = open("image-recognition-flask/Vehicle_count.txt", "w")
+    print("Vehicle Count : " ,count)
+    sys.stdout.close()
 
 @app.route('/', methods=['GET'])
 def index():
@@ -72,12 +76,14 @@ def upload():
 
         # Make prediction
         preds = model_predict(file_path)
-
+        
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
         #pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
                       # Convert to string
+        save_to_file(preds)       
         return preds
+
     return None
 
 
@@ -88,3 +94,4 @@ if __name__ == '__main__':
     #http_server = WSGIServer(('', 5000), app)
     #http_server.serve_forever()
     app.run()
+
