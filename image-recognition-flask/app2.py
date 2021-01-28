@@ -4,6 +4,7 @@ import sys
 import os
 import glob
 import re
+from typing import Counter
 import numpy as np
 
 # Keras
@@ -25,42 +26,40 @@ from gevent.pywsgi import WSGIServer
 # Define a flask app
 app = Flask(__name__)
 
-# Model saved with Keras model.save()
-#MODEL_PATH = 'models/model.h5'
+counter = 0
 
-# Load your trained model
-#model = load_model(MODEL_PATH)
- #model._make_predict_function()          # Necessary
-# print('Model loaded. Start serving...')
-
-# You can also use pretrained model from Keras
-# Check https://keras.io/applications/
-#from keras.applications.resnet50 import ResNet50
-#model = ResNet50(weights='imagenet')
 print('Model loaded. Check http://127.0.0.1:5000/ or http://localhost:5000/')
 
+def clear_file():
+    global counter
+    counter = 1
+    f = open('image-recognition-flask/Vehicle_count.txt', 'r+')
+    f.truncate(0) # need '0' when using r+
+
+def save_to_file(count):
+    f = open('image-recognition-flask/Vehicle_count.txt', 'a+')
+    f.write(count)
+    f.write(" ")
+    f.close()
 
 def model_predict(file_path):
+    global counter 
+    counter +=1
     #im = image.load_img(img_path)
     img = cv2.imread(file_path)
     bbox,label,conf = cv.detect_common_objects(img)
     #output_image = draw_bbox(im, bbox, label, conf)
-    
 
     preds = (str(label.count('car') + label.count('bus') + label.count('motorcycle') + label.count('person') + label.count('truck')))
-    print(preds)
+    if counter == 5:
+        clear_file()
+    save_to_file(preds)
     return preds
-
-def save_to_file(count):
-    sys.stdout = open("image-recognition-flask/Vehicle_count.txt", "w")
-    print("Vehicle Count : " ,count)
-    sys.stdout.close()
 
 @app.route('/', methods=['GET'])
 def index():
     # Main page
     return render_template('index.html')
-
 
 @app.route('/predict', methods=['GET', 'POST'])
 def upload():
@@ -80,10 +79,9 @@ def upload():
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
         #pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
-                      # Convert to string
-        save_to_file(preds)       
+                      # Convert to string       
         return preds
-
+        
     return None
 
 

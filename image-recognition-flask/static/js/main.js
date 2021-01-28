@@ -19,6 +19,7 @@ $(document).ready(function () {
     $("#imageUpload").change(function () {
         $('.image-section').show();
         $('#btn-predict').show();
+        $('#btn-visualize').show();
         $('#result').text('');
         $('#result').hide();
         readURL(this);
@@ -50,5 +51,7 @@ $(document).ready(function () {
             },
         });
     });
+
+    $('')
 
 });
