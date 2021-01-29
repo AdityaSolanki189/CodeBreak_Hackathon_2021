@@ -19,6 +19,7 @@ $(document).ready(function () {
     $("#imageUpload").change(function () {
         $('.image-section').show();
         $('#btn-predict').show();
+        $('#btn-visualize').show();
         $('#result').text('');
         $('#result').hide();
         readURL(this);
@@ -45,7 +46,7 @@ $(document).ready(function () {
                 // Get and display the result
                 $('.loader').hide();
                 $('#result').fadeIn(600);
-                $('#result').text(' Vehicel Count :  ' + data);
+                $('#result').text(' Vehicle Count :  ' + data);
                 console.log('Success!');
             },
         });

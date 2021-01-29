@@ -2,22 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>IntelliNox</title>
+
     <style>
         body{
             font-family:  'Merriweather','Source Sans Pro','Helvetica Neue', sans-serif;
         }
+        
         #heading{
             color: white;
             text-align: center;
         }
+        
         label input[type="file"]{
             display: none;
             /* align-content: center; */
         }
-        
+
         label{
             /* display: block; */
             display: inline-block;
@@ -32,9 +38,7 @@
             padding: 0.4rem 1.5rem;
             margin: 30px 44%;
             font-family:'Merriweather', Arial, Helvetica, sans-serif;
-            
-            
-        }
+        }        
         
         img{
             margin-top: 10px;
@@ -44,12 +48,10 @@
         .row{
             display: flex;
             justify-content: center;
-            
         }  
+        
         body{
-            
             height: 1024px; 
-            
             background: linear-gradient(180deg, #5a182f 23.44%, #2E1E65 100%),  #382c2c;
         }
         
@@ -57,16 +59,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            
+            width: 256px;
+            height: 256px;
+            position: relative;
+            border: 5px solid #F8F8F8;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+            margin-top: 1em;
+            margin-bottom: 1em;
         }
         
     </style>
 </head>
 <body>
-    
+
     <div>
         <h1 id = "heading">Intelligent Traffic Control</h1>
-        
     </div>
     
     <div class="row">
@@ -95,7 +102,7 @@
         function myfun(){
             i++;
             
-            var x = 	document.getElementById("uploadedhere").files[0];
+            var x = document.getElementById("uploadedhere").files[0];
             var currentimage1  = document.getElementById("changeimage1");
             var currentimage2  = document.getElementById("changeimage2");
             var currentimage3  = document.getElementById("changeimage3");
@@ -121,12 +128,10 @@
                     currentimage4.src = reader.result;
                 }
             }
-            
-            
-            
-            
             reader.readAsDataURL(x);
         }
+
+
         
     </script>
     
